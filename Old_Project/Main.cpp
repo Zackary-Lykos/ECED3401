@@ -21,7 +21,7 @@ int main(void)
 	wave1.wavereader(filename);
 
 
-	int input;
+	char input;
 	// print a little menu
 	cout << endl << endl << "ECED 3401 Project, choose what you want" << endl;
 	cout << "1 = Add truck ..." << endl;
