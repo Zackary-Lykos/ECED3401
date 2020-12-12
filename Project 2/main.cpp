@@ -11,6 +11,7 @@
 #include <iostream>
 #include "interface.hpp"
 #include "song.hpp"
+#include "FFT.h"
 using namespace std;
 
 /*
@@ -49,9 +50,73 @@ int main()
     vector<int> ch3 = NewSong.GetChannel_3();
     vector<int> ch4 = NewSong.GetChannel_4();
     int channels = NewSong.GetNum_channels();
+    //****¡üRead Input File£¬ seperate into channel¡ü****//
+
+    //*****************¡ýFFT transform¡ý*****************//
+    cout << "FFT test";
+
+    std::complex<int> ch1data[sizeof(long)], tmp[sizeof(long)];//2
+    std::complex<int> ch2data[sizeof(long)], tmp[sizeof(long)];
+    std::complex<int> ch3data[sizeof(long)], tmp[sizeof(long)];
+    std::complex<int> ch4data[sizeof(long)], tmp[sizeof(long)];
+    int N = 1024;
+    FFT fft_war;
+    if (channels == 1)
+    {
+        for (int i = 0; i < ch1.size(); i++)
+        {
+            ch1data[i] = ch1[i];
+            fft_war.fft_help(ch1data, N, tmp);
+        }
+    }
+    if (channels == 2)
+    {
+        for (int i = 0; i < ch1.size(); i++)
+        {
+            ch1data[i] = ch1[i];
+            ch2data[i] = ch2[i];
+            fft_war.fft_help(ch1data, N, tmp);
+            fft_war.fft_help(ch2data, N, tmp);
+        }
+    }
+    if (channels == 3)
+    {
+        for (int i = 0; i < ch1.size(); i++)
+        {
+            ch1data[i] = ch1[i];
+            ch2data[i] = ch2[i];
+            ch3data[i] = ch3[i];
+            fft_war.fft_help(ch1data, N, tmp);
+            fft_war.fft_help(ch2data, N, tmp);
+            fft_war.fft_help(ch3data, N, tmp);
+        }
+    }
+    if (channels == 4)
+    {
+        for (int i = 0; i < ch1.size(); i++)
+        {
+            ch1data[i] = ch1[i];
+            ch2data[i] = ch2[i];
+            ch3data[i] = ch3[i];
+            ch4data[i] = ch4[i];
+            fft_war.fft_help(ch1data, N, tmp);
+            fft_war.fft_help(ch2data, N, tmp);
+            fft_war.fft_help(ch3data, N, tmp);
+            fft_war.fft_help(ch4data, N, tmp);
+        }
+    }//ch1,2,3,4data are now in frequency domain, next step: find maximum in each file
+    //*****************¡üFFT transform¡ü*****************//
+
+    //*************¡ýFind 1024 Index value¡ý*************//
+
     
+    /*for (int i = 0; i < waveHeader.get_number_of_samples(); i++)
+    {
+        data[i] = wave1.getChannel().get_sample(i);
+    }
+    fft_var.fft_help(data, 6, tmp);*/
     
-  ofstream f( "new file.wav", ios::binary | ios::out); // Here's where I apply the function from the code I found online, linked above.
+  /*ofstream f( "new file.wav", ios::binary | ios::out); // Here's where I apply the function from the code I found online, linked above.
     f << "RIFF----WAVEfmt ";
     write_word( f,     16, 4 );  // no extension data
     write_word( f,      1, 2 );  // PCM - integer samples
@@ -115,6 +180,6 @@ int main()
     
     //inFile.close();
     f.close();
-    
+    */
 }
 
