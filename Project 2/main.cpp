@@ -55,10 +55,10 @@ int main()
     //*****************¡ýFFT transform¡ý*****************//
     cout << "FFT test";
 
-    std::complex<int> ch1data[sizeof(long)], tmp[sizeof(long)];//2
-    std::complex<int> ch2data[sizeof(long)], tmp[sizeof(long)];
-    std::complex<int> ch3data[sizeof(long)], tmp[sizeof(long)];
-    std::complex<int> ch4data[sizeof(long)], tmp[sizeof(long)];
+    std::complex<int> ch1data[sizeof(long)], tmp1[sizeof(long)];//2
+    std::complex<int> ch2data[sizeof(long)], tmp2[sizeof(long)];
+    std::complex<int> ch3data[sizeof(long)], tmp3[sizeof(long)];
+    std::complex<int> ch4data[sizeof(long)], tmp4[sizeof(long)];
     int N = 1024;
     FFT fft_war;
     if (channels == 1)
@@ -66,7 +66,7 @@ int main()
         for (int i = 0; i < ch1.size(); i++)
         {
             ch1data[i] = ch1[i];
-            fft_war.fft_help(ch1data, N, tmp);
+            fft_war.fft_help(ch1data, N, tmp1);
         }
     }
     if (channels == 2)
@@ -75,8 +75,8 @@ int main()
         {
             ch1data[i] = ch1[i];
             ch2data[i] = ch2[i];
-            fft_war.fft_help(ch1data, N, tmp);
-            fft_war.fft_help(ch2data, N, tmp);
+            fft_war.fft_help(ch1data, N, tmp1);
+            fft_war.fft_help(ch2data, N, tmp2);
         }
     }
     if (channels == 3)
@@ -86,9 +86,16 @@ int main()
             ch1data[i] = ch1[i];
             ch2data[i] = ch2[i];
             ch3data[i] = ch3[i];
-            fft_war.fft_help(ch1data, N, tmp);
-            fft_war.fft_help(ch2data, N, tmp);
-            fft_war.fft_help(ch3data, N, tmp);
+            fft_war.fft_help(ch1data, N, tmp1);
+            fft_war.fft_help(ch2data, N, tmp2);
+            fft_war.fft_help(ch3data, N, tmp3);
+//            chxdata = after fft value
+//                chxdata before fft = 11 11 22 55 774 7747 432423 777 44 11 amplitude of the wave in 0.01, 0.02 0.03 ~ second
+//               chxdata after fft  values = 11 11 22 55 77 74 7747 432423 777 44 11 frequency in this wave
+//           in the external file 1024 after fft) : 43242 53434 11 11 22 55 774 7747 432423 777 44 11 43432 54545 
+ //               11 shows 3 times, other values only shows 1~2 times
+ //               so index of this channel is 11
+ //              index = get maximum shown frequency ¡ü
         }
     }
     if (channels == 4)
@@ -99,10 +106,10 @@ int main()
             ch2data[i] = ch2[i];
             ch3data[i] = ch3[i];
             ch4data[i] = ch4[i];
-            fft_war.fft_help(ch1data, N, tmp);
-            fft_war.fft_help(ch2data, N, tmp);
-            fft_war.fft_help(ch3data, N, tmp);
-            fft_war.fft_help(ch4data, N, tmp);
+            fft_war.fft_help(ch1data, N, tmp1);
+            fft_war.fft_help(ch2data, N, tmp2);
+            fft_war.fft_help(ch3data, N, tmp3);
+            fft_war.fft_help(ch4data, N, tmp4);
         }
     }//ch1,2,3,4data are now in frequency domain, next step: find maximum in each file
     //*****************¡üFFT transform¡ü*****************//
