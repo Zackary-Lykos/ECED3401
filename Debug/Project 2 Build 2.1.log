@@ -1,0 +1,6 @@
+﻿  snippet.cpp
+  song.cpp
+C:\Users\Matthew\source\repos\Project 2 Build 2.1\song.cpp(69,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Matthew\source\repos\Project 2 Build 2.1\song.cpp(127,26): warning C4244: 'initializing': conversion from 'std::streamoff' to 'long', possible loss of data
+  Generating Code...
+  Project 2 Build 2.1.vcxproj -> C:\Users\Matthew\source\repos\Project 2 Build 2.1\Debug\Project 2 Build 2.1.exe
