@@ -1,2 +1,0 @@
-C:\Users\Matthew\source\repos\Project 2 Build 2.1\Debug\Project 2 Build 2.1.exe
-C:\Users\Matthew\source\repos\Project 2 Build 2.1\Debug\Project 2 Build 2.1.pdb
