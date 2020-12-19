@@ -4,11 +4,11 @@ using namespace std;
 
 snippet::snippet(vector<int>* data, int x) {
     channel_num = x;// which channel is the data from
-    num_samples = data->size(); // how many samples 
-    samples_per_5s = 44100 * 5; // how many segments are the ?
-    num_snippets = num_samples / samples_per_5s; // the number or samples in a snippet
-    if (num_snippets * samples_per_5s < num_samples) { // checks if the number of snippets is variable is correct 
-        num_snippets++;
+    num_samples = data->size(); // total samples
+    samples_per_5s = 44100 * 5; // how many samples in one snippet 
+    num_snippets = num_samples / samples_per_5s; // how many snippets will be generated !!! will lost the last part of data because the result is a [float->int]
+    if (num_snippets * samples_per_5s < num_samples) { 
+        num_snippets++; // include the last part of samples
     }
     int count = 0; // counter variable
 
@@ -32,7 +32,8 @@ snippet::snippet(vector<int>* data, int x) {
     }
     for (int i = 0; i < num_snippets; i++) { // the print out statement to see what how the data is organized 
         for (int j = 0; j < samples_per_5s; j++) { // if you want to stop printing the data remove or comment the code
-            cout << signature[i][j] << endl;
+            cout << "snippet number:" << i << "..sample number" << j << "..is.."<< signature[i][j] << endl;
+
         }
     }
 
