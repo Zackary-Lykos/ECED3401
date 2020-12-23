@@ -37,16 +37,16 @@ int main()
     vector<int> ch1 = NewSong.GetChannel_1(); // We will compare channel 1 of the input to each channel 1 in the database
     
     vector<int> ch1_temp; // This will be the channel of the song from the database that is being compared to the input
-    
+    //ch1 is new song, ch1_temp is old song 
     for(int i = 0;i < Database.size();i++){
-        Song temp = Database.at(i);
+        Song temp = Database.at(i); //song i, like song1 ch1 -> song 2 ch2
         ch1_temp = temp.GetChannel_1();
         
         Report temp_report = compare(&ch1,snippet(&ch1_temp, 1, temp.GetFile_name())); // The generated report has all the information necessary to declare a match
         
         if(temp_report.getSnippet_num() != 0){ // If the snippet number is 0, no match was found
             cout << "Match found in snippet " << temp_report.getSnippet_num() << " of the file " << temp_report.getMatch_file() << endl;
-            match = true;
+            match = true; 
             break;
         }
     }
